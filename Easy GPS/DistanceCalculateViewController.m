@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *toLngField;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UIView *containingView;
+
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLLocationManager *manager;
 @end
@@ -43,6 +45,11 @@
         self.manager.desiredAccuracy = kCLLocationAccuracyBest;
     }
     [self.manager startUpdatingLocation];
+    
+    if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
+        CGRect frame = self.containingView.frame;
+        self.containingView.frame = CGRectMake(frame.origin.x, frame.origin.y + 64., frame.size.width, frame.size.height);
+    }
 }
 
 - (void)didReceiveMemoryWarning

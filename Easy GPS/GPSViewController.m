@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *theNewButton;
+@property (weak, nonatomic) IBOutlet UIView *containingView;
 
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLLocationManager *manager;
@@ -49,7 +50,7 @@
     if (!self.coords) {
         self.coords = [[NSMutableArray alloc] initWithCapacity:100];
     }
-    NSLog(@"%@", NSHomeDirectory());
+    //NSLog(@"%@", NSHomeDirectory());
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *latestTimeStamp = [defaults objectForKey:kLatestTimeStamp];
@@ -68,6 +69,10 @@
     }
     self.isRecording = NO;
     
+    if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
+        CGRect frame = self.containingView.frame;
+        self.containingView.frame = CGRectMake(frame.origin.x, frame.origin.y + 64., frame.size.width, frame.size.height);
+    }
 }
 
 - (void)didReceiveMemoryWarning

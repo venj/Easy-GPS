@@ -30,6 +30,11 @@
 	// Do any additional setup after loading the view.
     self.title = [self.path lastPathComponent];
     self.textView.text = [self readFileContent];
+    
+    if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
+        CGRect frame = self.textView.frame;
+        self.textView.frame = CGRectMake(frame.origin.x, frame.origin.y + 64., frame.size.width, frame.size.height - 64.);
+    }
 }
 
 - (NSString *)readFileContent {

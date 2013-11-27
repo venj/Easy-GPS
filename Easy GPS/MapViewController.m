@@ -31,7 +31,15 @@
 	// Do any additional setup after loading the view.
     self.title = @"Map";
     if ([self.mapView.annotations count] <= 1) {
-        [self.mapView addAnnotations:@[self.currentPoint]];
+        [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer *timer) {
+            [self.mapView addAnnotations:@[self.currentPoint]];
+            self.mapView.centerCoordinate = self.currentPoint.coordinate;
+        } repeats:NO];
+    }
+    
+    if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
+        CGRect frame = self.mapView.frame;
+        self.mapView.frame = CGRectMake(frame.origin.x, frame.origin.y + 64., frame.size.width, frame.size.height - 64.);
     }
 }
 
@@ -58,5 +66,11 @@
     }
     return pinView;
 }
+
+//- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+//    [UIView animateWithDuration:2 animations:^{
+//        self.mapView.centerCoordinate = userLocation.coordinate;
+//    }];
+//}
 
 @end
