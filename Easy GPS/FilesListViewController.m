@@ -10,7 +10,7 @@
 #import "FileContentViewController.h"
 
 @interface FilesListViewController ()
-@property (nonatomic, strong) NSArray *files;
+@property (nonatomic, strong) NSMutableArray *files;
 @end
 
 @implementation FilesListViewController
@@ -37,7 +37,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSArray *)dataFiles {
+- (NSMutableArray *)dataFiles {
     NSMutableArray *array = [NSMutableArray array];
     NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSFileManager *localFileManager=[[NSFileManager alloc] init];
@@ -82,28 +82,39 @@
     return cell;
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        NSString *fileName = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+        if (!fileName) {
+            return;
+        }
+        NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        if ([fm fileExistsAtPath:path isDirectory:NO]) {
+            NSError *error;
+            [fm removeItemAtPath:path error:&error];
+            if (error) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription]];
+                [alert setCancelButtonWithTitle:@"OK" handler:nil];
+                [alert show];
+            }
+        }
+        
+        [self.files removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        
+    }
 }
-*/
 
 /*
 // Override to support rearranging the table view.

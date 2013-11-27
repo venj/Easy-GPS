@@ -10,7 +10,7 @@
 
 @interface FileContentViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-
+@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation FileContentViewController
@@ -30,11 +30,18 @@
 	// Do any additional setup after loading the view.
     self.title = [self.path lastPathComponent];
     self.textView.text = [self readFileContent];
-    
-    if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
-        CGRect frame = self.textView.frame;
-        self.textView.frame = CGRectMake(frame.origin.x, frame.origin.y + 64., frame.size.width, frame.size.height - 64.);
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (!self.timer) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:15 block:^(NSTimer *timer) {
+            [self reloadFileContent:nil];
+        } repeats:YES];
     }
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [self.timer invalidate];
 }
 
 - (NSString *)readFileContent {

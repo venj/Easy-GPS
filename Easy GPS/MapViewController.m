@@ -11,6 +11,7 @@
 
 @interface MapViewController () <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *mapTypeSegmentControl;
 
 @end
 
@@ -33,9 +34,16 @@
     if ([self.mapView.annotations count] <= 1) {
         [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer *timer) {
             [self.mapView addAnnotations:@[self.currentPoint]];
-            self.mapView.centerCoordinate = self.currentPoint.coordinate;
         } repeats:NO];
+        
+        CGFloat height = 0.01;
+        MKCoordinateSpan span = MKCoordinateSpanMake(0.75 * height, height);
+        CLLocationCoordinate2D centerCoord = self.currentPoint.coordinate;
+        MKCoordinateRegion visibleRegion = MKCoordinateRegionMake(centerCoord, span);
+        [self.mapView setRegion:visibleRegion animated:YES];
     }
+    
+    self.mapTypeSegmentControl.selectedSegmentIndex = 0;
     
     if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
         CGRect frame = self.mapView.frame;
@@ -53,6 +61,7 @@
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return [mapView viewForAnnotation:mapView.userLocation];
     }
+    
     NSString *AnnotationIdentifier = @"StationPin";
     MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationIdentifier];
     if (!pinView) {
@@ -67,10 +76,17 @@
     return pinView;
 }
 
-//- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-//    [UIView animateWithDuration:2 animations:^{
-//        self.mapView.centerCoordinate = userLocation.coordinate;
-//    }];
-//}
+- (IBAction)mapTypeChanged:(id)sender {
+    NSInteger index = [sender selectedSegmentIndex];
+    if (index == 2) {
+        self.mapView.mapType = MKMapTypeHybrid;
+    }
+    else if (index == 1) {
+        self.mapView.mapType = MKMapTypeSatellite;
+    }
+    else {
+        self.mapView.mapType = MKMapTypeStandard;
+    }
+}
 
 @end

@@ -50,16 +50,15 @@
     if (!self.coords) {
         self.coords = [[NSMutableArray alloc] initWithCapacity:100];
     }
-    //NSLog(@"%@", NSHomeDirectory());
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *latestTimeStamp = [defaults objectForKey:kLatestTimeStamp];
+    NSNumber *latestFileName = [defaults objectForKey:kLatestTimeStamp];
     NSString *fileName;
-    if (latestTimeStamp) {
-        fileName = [NSString stringWithFormat:@"coords_%.0f.txt", [latestTimeStamp doubleValue]];
+    if (latestFileName) {
+        fileName = (NSString *)latestFileName;
     }
     else {
-        fileName = [NSString stringWithFormat:@"coords_%.0f.txt", [[NSDate date] timeIntervalSince1970]];
+        fileName = [NSString stringWithFormat:@"Default_%.0f.txt", [[NSDate date] timeIntervalSince1970]];
     }
     
     self.path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName];
@@ -83,7 +82,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     //[self.manager stopUpdatingLocation];
-    [self cleanUp];
+    [self writeCoordsCacheToFile];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -110,7 +109,7 @@
         [self.coords addObject:[[NSString alloc] initWithFormat:@"%@,%@,%@,%@,%@,%.0f,%@\n", self.latitudeLabel.text, self.longitudeLabel.text, self.altitudeLabel.text, self.hAccuracyLabel.text, self.vAccuracyLabel.text, [newLocation.timestamp timeIntervalSince1970], self.speedLabel.text]];
         
         if (self.coords && self.coords.count >= 10) {
-            [self cleanUp];
+            [self writeCoordsCacheToFile];
         }
     }
 }
@@ -124,7 +123,7 @@
 
 - (IBAction)startRecord:(id)sender {
     if (self.isRecording) { // Pause
-        [self cleanUp]; // Write back to file.
+        [self writeCoordsCacheToFile]; // Write back to file.
         self.theNewButton.enabled = YES;
         self.isRecording = NO; // Stop it
         [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
@@ -137,24 +136,40 @@
 }
 
 - (IBAction)newFile:(id)sender {
-    [self cleanUp];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File name" message:@"Please specify a filename for data file:"];
+    __weak UIAlertView *weakAlert = alert;
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert addButtonWithTitle:@"OK" handler:^{
+        NSString *fileName = [NSString stringWithFormat:@"%@.txt", [weakAlert textFieldAtIndex:0].text];
+        self.path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName];
+        self.fm = [NSFileManager defaultManager];
+        if ([self.fm fileExistsAtPath:self.path]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"File already exists with the same name!"];
+            [alert setCancelButtonWithTitle:@"OK" handler:nil];
+            [alert show];
+        }
+        else {
+            [self writeCoordsCacheToFile];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:fileName forKey:kLatestTimeStamp];
+            if (![self.fm fileExistsAtPath:self.path]) {
+                [self.fm createFileAtPath:self.path contents:nil attributes:@{}];
+            }
+            [self startRecord:nil];
+        }
+    }];
+    [alert setCancelButtonWithTitle:@"Cancel" handler:nil];
+    [alert show];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSTimeInterval ti = [[NSDate date] timeIntervalSince1970];
-    [defaults setObject:@(ti) forKey:kLatestTimeStamp];
-    
-    NSString *fileName = [NSString stringWithFormat:@"coords_%.0f.txt", ti];
-    self.path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName];
-    self.fm = [NSFileManager defaultManager];
-    if (![self.fm fileExistsAtPath:self.path]) {
-        [self.fm createFileAtPath:self.path contents:nil attributes:@{}];
-    }
-    [self startRecord:nil];
 }
 
-- (void)cleanUp {
+- (void)writeCoordsCacheToFile {
     if ([self.coords count] == 0) {
         return;
+    }
+    if (![self.fm fileExistsAtPath:self.path]) {
+        // Create file in case file was deleted by file list view controller.
+        [self.fm createFileAtPath:self.path contents:nil attributes:@{}];
     }
     self.fh = [NSFileHandle fileHandleForWritingAtPath:self.path];
     [self.fh seekToEndOfFile];
