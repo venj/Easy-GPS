@@ -1,0 +1,16 @@
+PODS:
+  - BlocksKit (1.8.3):
+    - libffi
+  - libffi (3.0.13)
+  - MBProgressHUD (0.8)
+
+DEPENDENCIES:
+  - BlocksKit (~> 1.8.2)
+  - MBProgressHUD (~> 0.7)
+
+SPEC CHECKSUMS:
+  BlocksKit: 27257f9cbbec0ea98c80ba83cc2ea7111ae62eb2
+  libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
+
+COCOAPODS: 0.28.0
