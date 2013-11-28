@@ -1,0 +1,102 @@
+
+/* Class = "IBUILabel"; text = "Latitude"; ObjectID = "5nG-fX-06V"; */
+"5nG-fX-06V.text" = "Latitude";
+
+/* Class = "IBUITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "A1n-F2-Tcp"; */
+"A1n-F2-Tcp.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "IBUIViewController"; title = "First"; ObjectID = "CZ4-MO-1fc"; */
+"CZ4-MO-1fc.title" = "First";
+
+/* Class = "IBUILabel"; text = "V-Accu"; ObjectID = "Cig-c2-Fzp"; */
+"Cig-c2-Fzp.text" = "V-Accu";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "EDv-SF-0Ih"; */
+"EDv-SF-0Ih.text" = "0";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "FyD-gb-Do0"; */
+"FyD-gb-Do0.text" = "0";
+
+/* Class = "IBUILabel"; text = ","; ObjectID = "GlE-ZR-JMR"; */
+"GlE-ZR-JMR.text" = ",";
+
+/* Class = "IBUILabel"; text = "Speed"; ObjectID = "Ifx-Cc-ds6"; */
+"Ifx-Cc-ds6.text" = "Speed";
+
+/* Class = "IBUISegmentedControl"; Jw1-oP-vJ6.segmentTitles[0] = "Map"; ObjectID = "Jw1-oP-vJ6"; */
+"Jw1-oP-vJ6.segmentTitles[0]" = "Map";
+
+/* Class = "IBUISegmentedControl"; Jw1-oP-vJ6.segmentTitles[1] = "Satellite"; ObjectID = "Jw1-oP-vJ6"; */
+"Jw1-oP-vJ6.segmentTitles[1]" = "Satellite";
+
+/* Class = "IBUISegmentedControl"; Jw1-oP-vJ6.segmentTitles[2] = "Hybrid"; ObjectID = "Jw1-oP-vJ6"; */
+"Jw1-oP-vJ6.segmentTitles[2]" = "Hybrid";
+
+/* Class = "IBUILabel"; text = "Longitude"; ObjectID = "OIB-7G-dcL"; */
+"OIB-7G-dcL.text" = "经度";
+
+/* Class = "IBUIViewController"; title = "Second"; ObjectID = "QUy-BD-bpt"; */
+"QUy-BD-bpt.title" = "Second";
+
+/* Class = "IBUILabel"; text = "Altitude"; ObjectID = "Th9-OB-eRw"; */
+"Th9-OB-eRw.text" = "海拔";
+
+/* Class = "IBUILabel"; text = "From"; ObjectID = "XbW-Co-rpg"; */
+"XbW-Co-rpg.text" = "起点";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "Yj2-aq-1Pz"; */
+"Yj2-aq-1Pz.text" = "0";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "Yoi-Gf-iJC"; */
+"Yoi-Gf-iJC.text" = "0";
+
+/* Class = "IBUILabel"; text = "Timestamp"; ObjectID = "Z5V-jD-Ces"; */
+"Z5V-jD-Ces.text" = "时间";
+
+/* Class = "IBUITabBarItem"; title = "Distance"; ObjectID = "Z7h-1E-pvt"; */
+"Z7h-1E-pvt.title" = "距离";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "ZjK-Eq-iza"; */
+"ZjK-Eq-iza.text" = "0";
+
+/* Class = "IBUIButton"; normalTitle = "New"; ObjectID = "a6J-2n-V5g"; */
+"a6J-2n-V5g.normalTitle" = "New";
+
+/* Class = "IBUILabel"; text = "To"; ObjectID = "aby-cw-87Y"; */
+"aby-cw-87Y.text" = "To";
+
+/* Class = "IBUILabel"; text = ","; ObjectID = "e6d-3h-Xfz"; */
+"e6d-3h-Xfz.text" = ",";
+
+/* Class = "IBUIButton"; normalTitle = "Calculate"; ObjectID = "eF1-3F-d90"; */
+"eF1-3F-d90.normalTitle" = "Calculate";
+
+/* Class = "IBUIButton"; normalTitle = "Start"; ObjectID = "fOU-ek-ZDs"; */
+"fOU-ek-ZDs.normalTitle" = "Start";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "gm8-lS-Vvd"; */
+"gm8-lS-Vvd.text" = "0";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "hZw-3C-vEn"; */
+"hZw-3C-vEn.text" = "0";
+
+/* Class = "IBUILabel"; text = "H-Accu"; ObjectID = "p5V-Ee-67N"; */
+"p5V-Ee-67N.text" = "H-Accu";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "sUE-BF-rFd"; */
+"sUE-BF-rFd.text" = "0";
+
+/* Class = "IBUIButton"; normalTitle = "Map"; ObjectID = "sa3-2d-So4"; */
+"sa3-2d-So4.normalTitle" = "Map";
+
+/* Class = "IBUIBarButtonItem"; title = "Data"; ObjectID = "tch-xr-4DE"; */
+"tch-xr-4DE.title" = "Data";
+
+/* Class = "IBUITabBarItem"; title = "GPS"; ObjectID = "u1e-5L-l1D"; */
+"u1e-5L-l1D.title" = "GPS";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "uU5-2H-N64"; */
+"uU5-2H-N64.text" = "0";
+
+/* Class = "IBUIButton"; normalTitle = "Current"; ObjectID = "ywG-uT-ViY"; */
+"ywG-uT-ViY.normalTitle" = "Current";

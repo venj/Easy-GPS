@@ -30,7 +30,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"Map";
+    self.title = NSLocalizedString(@"Map", @"Map");
+    [self.mapTypeSegmentControl setTitle:NSLocalizedString(@"Map", @"Map") forSegmentAtIndex:0];
+    [self.mapTypeSegmentControl setTitle:NSLocalizedString(@"Satellite", @"Satellite") forSegmentAtIndex:1];
+    [self.mapTypeSegmentControl setTitle:NSLocalizedString(@"Hybrid", @"Hybrid") forSegmentAtIndex:2];
+    
     if ([self.mapView.annotations count] <= 1) {
         [NSTimer scheduledTimerWithTimeInterval:1 block:^(NSTimer *timer) {
             [self.mapView addAnnotations:@[self.currentPoint]];

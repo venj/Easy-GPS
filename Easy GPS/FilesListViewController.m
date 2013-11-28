@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     self.files = [self dataFiles];
-    self.title = @"Data";
+    self.title = NSLocalizedString(@"Data", @"Data");
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,8 +104,8 @@
             NSError *error;
             [fm removeItemAtPath:path error:&error];
             if (error) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription]];
-                [alert setCancelButtonWithTitle:@"OK" handler:nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error") message:[error localizedDescription]];
+                [alert setCancelButtonWithTitle:NSLocalizedString(@"OK", @"OK") handler:nil];
                 [alert show];
             }
         }

@@ -31,6 +31,7 @@
 		255C757F1839A927003BD90D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255C757E1839A927003BD90D /* MapKit.framework */; };
 		255C75811839A92E003BD90D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255C75801839A92E003BD90D /* CoreLocation.framework */; };
 		25A6944D1839D39A00CCCACF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A6944C1839D39A00CCCACF /* MapViewController.m */; };
+		25FF99AC18472CAC00DD204B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25FF99AA18472CAC00DD204B /* Localizable.strings */; };
 		77913DF8183DB88A00A5D80C /* FilesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77913DF7183DB88A00A5D80C /* FilesListViewController.m */; };
 		77913DFE183DBC1F00A5D80C /* FileContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77913DFD183DBC1F00A5D80C /* FileContentViewController.m */; };
 		CFBE727C9BE747D291A206CC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F14DC14E5747DDB118E13A /* libPods.a */; };
@@ -85,6 +86,11 @@
 		255C75831839A99D003BD90D /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		25A6944B1839D39A00CCCACF /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		25A6944C1839D39A00CCCACF /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		25FF99AB18472CAC00DD204B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		25FF99AE18472CE800DD204B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		25FF99AF18472CE800DD204B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		25FF99B018472CE800DD204B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		25FF99B118472CE800DD204B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6E75FC862D624AF5BED6BD02 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		77913DF6183DB88A00A5D80C /* FilesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesListViewController.h; sourceTree = "<group>"; };
 		77913DF7183DB88A00A5D80C /* FilesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesListViewController.m; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 			children = (
 				255C753C1839846F003BD90D /* Easy GPS-Info.plist */,
 				255C753D1839846F003BD90D /* InfoPlist.strings */,
+				25FF99AA18472CAC00DD204B /* Localizable.strings */,
 				255C75401839846F003BD90D /* main.m */,
 				255C75421839846F003BD90D /* Easy GPS-Prefix.pch */,
 			);
@@ -290,6 +297,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 255C75281839846F003BD90D;
 			productRefGroup = 255C75321839846F003BD90D /* Products */;
@@ -308,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				255C75501839846F003BD90D /* Images.xcassets in Resources */,
+				25FF99AC18472CAC00DD204B /* Localizable.strings in Resources */,
 				255C753F1839846F003BD90D /* InfoPlist.strings in Resources */,
 				255C75481839846F003BD90D /* Main.storyboard in Resources */,
 			);
@@ -400,6 +409,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				255C753E1839846F003BD90D /* en */,
+				25FF99AF18472CE800DD204B /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -408,6 +418,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				255C75471839846F003BD90D /* Base */,
+				25FF99AE18472CE800DD204B /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -416,8 +427,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				255C75601839846F003BD90D /* en */,
+				25FF99B118472CE800DD204B /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		25FF99AA18472CAC00DD204B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25FF99AB18472CAC00DD204B /* Base */,
+				25FF99B018472CE800DD204B /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

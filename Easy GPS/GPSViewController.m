@@ -13,16 +13,25 @@
 #define kLatestTimeStamp @"LatestTimeStampKey"
 
 @interface GPSViewController () <CLLocationManagerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *latitudeTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *longitudeTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *longitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *altitudeTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *altitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hAccuracyTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *hAccuracyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *vAccuracyTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *vAccuracyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *speedTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
+@property (weak, nonatomic) IBOutlet UIButton *showOnMapButton;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *theNewButton;
 @property (weak, nonatomic) IBOutlet UIView *containingView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *dataBarButton;
 
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLLocationManager *manager;
@@ -39,7 +48,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.title = @"GPS";
+    self.title = NSLocalizedString(@"GPS", @"GPS");
+    [self.showOnMapButton setTitle:NSLocalizedString(@"Map", @"Map") forState:UIControlStateNormal];
+    [self.theNewButton setTitle:NSLocalizedString(@"New", @"New") forState:UIControlStateNormal];
+    [self.startButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
+    self.latitudeTitleLabel.text = NSLocalizedString(@"Latitude", @"Latitude");
+    self.longitudeTitleLabel.text = NSLocalizedString(@"Longitude", @"Longitude");
+    self.altitudeTitleLabel.text = NSLocalizedString(@"Altitude", @"Altitude");
+    self.hAccuracyTitleLabel.text = NSLocalizedString(@"H-Accu", @"H-Accu");
+    self.vAccuracyTitleLabel.text = NSLocalizedString(@"V-Accu", @"V-Accu");
+    self.timeTitleLabel.text = NSLocalizedString(@"Timestamp", @"Timestamp");
+    self.speedTitleLabel.text = NSLocalizedString(@"Speed", @"Speed");
+    self.dataBarButton.title = NSLocalizedString(@"Data", @"Data");
     
     if (!self.manager) {
         self.manager = [[CLLocationManager alloc] init];
@@ -58,7 +78,7 @@
         fileName = (NSString *)latestFileName;
     }
     else {
-        fileName = [NSString stringWithFormat:@"Default_%.0f.txt", [[NSDate date] timeIntervalSince1970]];
+        fileName = @"Default.txt";//[NSString stringWithFormat:@"Default_%.0f.txt", [[NSDate date] timeIntervalSince1970]];
     }
     
     self.path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName];
@@ -98,8 +118,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setTimeStyle:NSDateFormatterMediumStyle];
     [formatter setDateStyle:NSDateFormatterShortStyle];
-    NSLocale *cnLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
-    [formatter setLocale:cnLocale];
+    NSLocale *locale = [NSLocale systemLocale];
+    [formatter setLocale:locale];
     self.timeLabel.text = [formatter stringFromDate:newLocation.timestamp];
     self.speedLabel.text = [NSString stringWithFormat:@"%.2f", newLocation.speed];
     self.currentLocation = newLocation;
@@ -126,26 +146,26 @@
         [self writeCoordsCacheToFile]; // Write back to file.
         self.theNewButton.enabled = YES;
         self.isRecording = NO; // Stop it
-        [self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+        [self.startButton setTitle:NSLocalizedString(@"Start", @"Start") forState:UIControlStateNormal];
     }
     else {
         self.theNewButton.enabled = NO;
         self.isRecording = YES; // Start it
-        [self.startButton setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.startButton setTitle:NSLocalizedString(@"Pause", @"Pause") forState:UIControlStateNormal];
     }
 }
 
 - (IBAction)newFile:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File name" message:@"Please specify a filename for data file:"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"File name", @"File name") message:NSLocalizedString(@"Please specify a filename for data file:", @"Please specify a filename for data file:")];
     __weak UIAlertView *weakAlert = alert;
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert addButtonWithTitle:@"OK" handler:^{
+    [alert addButtonWithTitle:NSLocalizedString(@"OK", @"OK") handler:^{
         NSString *fileName = [NSString stringWithFormat:@"%@.txt", [weakAlert textFieldAtIndex:0].text];
         self.path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName];
         self.fm = [NSFileManager defaultManager];
         if ([self.fm fileExistsAtPath:self.path]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"File already exists with the same name!"];
-            [alert setCancelButtonWithTitle:@"OK" handler:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error") message:NSLocalizedString(@"File already exists with the same name!", @"File already exists with the same name!")];
+            [alert setCancelButtonWithTitle:NSLocalizedString(@"OK", @"OK") handler:nil];
             [alert show];
         }
         else {
@@ -158,7 +178,7 @@
             [self startRecord:nil];
         }
     }];
-    [alert setCancelButtonWithTitle:@"Cancel" handler:nil];
+    [alert setCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel") handler:nil];
     [alert show];
     
 }

@@ -90,7 +90,7 @@
 }
 
 - (NSString *)description {
-    return [[NSString alloc] initWithFormat:@"(Lat: %f, Lng: %f)", self.x, self.y];
+    return [[NSString alloc] initWithFormat:NSLocalizedString(@"(Lat: %f, Lng: %f)", @"(Lat: %f, Lng: %f)"), self.x, self.y];
 }
 
 @end

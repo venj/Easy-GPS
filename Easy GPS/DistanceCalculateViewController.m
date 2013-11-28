@@ -18,9 +18,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *fromLngField;
 @property (weak, nonatomic) IBOutlet UITextField *toLatField;
 @property (weak, nonatomic) IBOutlet UITextField *toLngField;
+@property (weak, nonatomic) IBOutlet UILabel *fromTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIView *containingView;
+@property (weak, nonatomic) IBOutlet UIButton *currentButton;
+@property (weak, nonatomic) IBOutlet UIButton *calculateButton;
 
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLLocationManager *manager;
@@ -32,7 +36,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.title = @"Distance";
+    self.title = NSLocalizedString(@"Distance", @"Distance");
+    self.fromTitleLabel.text = NSLocalizedString(@"From", @"From");
+    self.toTitleLabel.text = NSLocalizedString(@"To", @"To");
+    [self.currentButton setTitle:NSLocalizedString(@"Current", @"Current") forState:UIControlStateNormal];
+    [self.calculateButton setTitle:NSLocalizedString(@"Calculate", @"Calculate") forState:UIControlStateNormal];
 //    self.fromLatField.text = @"30.0000";
 //    self.fromLngField.text = @"120.0000";
 //    self.toLatField.text = @"31.0000";
@@ -88,12 +96,12 @@
     GFPoint *from = [[GFPoint alloc] initWithLatitude:fromLat longitude:fromLng];
     GFPoint *to = [[GFPoint alloc] initWithLatitude:toLat longitude:toLng];
     CGFloat distance = [GeoAlgorithm getDistanceFromPoint:from toPoint:to];
-    self.distanceLabel.text = [NSString stringWithFormat:@"%.2f yd / %.2f m", fabs(distance), fabs(distance) / YARDRATE];
+    self.distanceLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%.2f yd / %.2f m", @"%.2f yd / %.2f m"), fabs(distance), fabs(distance) / YARDRATE];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     //NSTimeInterval delta = [[NSDate date] timeIntervalSinceDate:newLocation.timestamp];
-    self.infoLabel.text = [[NSString alloc] initWithFormat:@"Alt: %.2f H-Acc: %.2f V-Acc: %.2f", newLocation.altitude, newLocation.horizontalAccuracy, newLocation.verticalAccuracy];
+    self.infoLabel.text = [[NSString alloc] initWithFormat:NSLocalizedString(@"Alt: %.2f H-Acc: %.2f V-Acc: %.2f", @"Alt: %.2f H-Acc: %.2f V-Acc: %.2f"), newLocation.altitude, newLocation.horizontalAccuracy, newLocation.verticalAccuracy];
     self.infoLabel.adjustsFontSizeToFitWidth = YES;
     self.currentLocation = newLocation;
 }
