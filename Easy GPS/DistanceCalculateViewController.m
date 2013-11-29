@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *containingView;
 @property (weak, nonatomic) IBOutlet UIButton *currentButton;
 @property (weak, nonatomic) IBOutlet UIButton *calculateButton;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) CLLocationManager *manager;
@@ -54,10 +55,11 @@
     }
     [self.manager startUpdatingLocation];
     
-    if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
-        CGRect frame = self.containingView.frame;
-        self.containingView.frame = CGRectMake(frame.origin.x, frame.origin.y + 64., frame.size.width, frame.size.height);
-    }
+//    if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
+//        CGRect frame = self.containingView.frame;
+//        self.containingView.frame = CGRectMake(frame.origin.x, frame.origin.y + 64., frame.size.width, frame.size.height);
+//    }
+    self.scrollView.contentSize = self.containingView.frame.size;
 }
 
 - (void)didReceiveMemoryWarning

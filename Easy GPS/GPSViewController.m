@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *showOnMapButton;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *theNewButton;
-@property (weak, nonatomic) IBOutlet UIView *containingView;
+@property (weak, nonatomic) IBOutlet UIScrollView *containingView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *dataBarButton;
 
 @property (nonatomic, strong) CLLocation *currentLocation;
@@ -88,10 +88,7 @@
     }
     self.isRecording = NO;
     
-    if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
-        CGRect frame = self.containingView.frame;
-        self.containingView.frame = CGRectMake(frame.origin.x, frame.origin.y + 64., frame.size.width, frame.size.height);
-    }
+    self.containingView.contentSize = CGSizeMake(320., 280.);
 }
 
 - (void)didReceiveMemoryWarning
