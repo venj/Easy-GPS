@@ -42,10 +42,6 @@
     self.toTitleLabel.text = NSLocalizedString(@"To", @"To");
     [self.currentButton setTitle:NSLocalizedString(@"Current", @"Current") forState:UIControlStateNormal];
     [self.calculateButton setTitle:NSLocalizedString(@"Calculate", @"Calculate") forState:UIControlStateNormal];
-//    self.fromLatField.text = @"30.0000";
-//    self.fromLngField.text = @"120.0000";
-//    self.toLatField.text = @"31.0000";
-//    self.toLngField.text = @"120.0000";
     [self.infoLabel adjustsFontSizeToFitWidth];
     [self.distanceLabel adjustsFontSizeToFitWidth];
     if (!self.manager) {
@@ -54,11 +50,6 @@
         self.manager.desiredAccuracy = kCLLocationAccuracyBest;
     }
     [self.manager startUpdatingLocation];
-    
-//    if ([[UIDevice currentDevice] deviceSystemMajorVersion] >= 7) {
-//        CGRect frame = self.containingView.frame;
-//        self.containingView.frame = CGRectMake(frame.origin.x, frame.origin.y + 64., frame.size.width, frame.size.height);
-//    }
     self.scrollView.contentSize = self.containingView.frame.size;
 }
 
@@ -102,7 +93,6 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    //NSTimeInterval delta = [[NSDate date] timeIntervalSinceDate:newLocation.timestamp];
     self.infoLabel.text = [[NSString alloc] initWithFormat:NSLocalizedString(@"Alt: %.2f H-Acc: %.2f V-Acc: %.2f", @"Alt: %.2f H-Acc: %.2f V-Acc: %.2f"), newLocation.altitude, newLocation.horizontalAccuracy, newLocation.verticalAccuracy];
     self.infoLabel.adjustsFontSizeToFitWidth = YES;
     self.currentLocation = newLocation;

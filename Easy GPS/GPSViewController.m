@@ -78,7 +78,7 @@
         fileName = (NSString *)latestFileName;
     }
     else {
-        fileName = @"Default.txt";//[NSString stringWithFormat:@"Default_%.0f.txt", [[NSDate date] timeIntervalSince1970]];
+        fileName = @"Default.txt";
     }
     
     self.path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:fileName];
