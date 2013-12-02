@@ -8,6 +8,7 @@ Compile
 
 Install cocoapods gem; build with `Easy GPS.xcworkspace`.
 
+**Not compatible with iOS 64-bit bacause of libffi**
 
 License
 -------
